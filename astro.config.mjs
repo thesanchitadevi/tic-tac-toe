@@ -1,15 +1,19 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
+import react from "@astrojs/react";
+import tailwind from "@astrojs/tailwind";
+import tailwindcss from "tailwindcss"; // Add this import
+import autoprefixer from "autoprefixer"; // Add this import
 
-import tailwindcss from '@tailwindcss/vite';
-
-import react from '@astrojs/react';
-
-// https://astro.build/config
 export default defineConfig({
   vite: {
-    plugins: [tailwindcss()]
+    css: {
+      postcss: {
+        plugins: [
+          tailwindcss(), // Use the imported function
+          autoprefixer(), // Use the imported function
+        ],
+      },
+    },
   },
-
-  integrations: [react()]
+  integrations: [react(), tailwind()],
 });
